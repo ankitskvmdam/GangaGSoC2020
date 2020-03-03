@@ -8,7 +8,7 @@ def mergefiles(file_list ,output_file):
         count = count + int(f_in.read())
         f_in.close()
 
-    f_out.write("Total 'the' count: {}".format(count))
+    f_out.write(count)
     f_out.flush()
     f_out.close()
     return True
