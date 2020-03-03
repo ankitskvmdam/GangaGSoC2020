@@ -12,6 +12,7 @@ def count_the(path_of_pdf):
         if re.search('^[tT][hH][eE]$', word):
             count = count + 1
 
+    print(count)
     return count
 
 argv = sys.argv

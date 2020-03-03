@@ -1,5 +1,5 @@
-# import ganga.ganga
-# from ganga import Job, ArgSplitter, LocalFile
+import ganga.ganga
+from ganga import Job, ArgSplitter, LocalFile, CustomMerger
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import os
@@ -7,6 +7,7 @@ import json
 
 count_the_filename = "count_the.py"
 
+# Split the pdf into single pages
 def split_pdf_files(pdf_file_path):
     pdf = PdfFileReader(pdf_file_path)
     pdf_info = dict()
@@ -54,8 +55,9 @@ def split_pdf_files(pdf_file_path):
 
     return processed_pdf_file_location
 
+# Generate list of files that are given to ganga
 def get_input_files(processed_pdf_file_location):
-    files = list()
+    files = [count_the_filename, "merger.py"]
     split_info_location = "{}/{}".format(processed_pdf_file_location,"split_info.json")
 
     # opening split_info.json
@@ -64,10 +66,11 @@ def get_input_files(processed_pdf_file_location):
         length = data["total_page"]
         for filename in data["pages"]:
             file_location = "{}/{}".format(processed_pdf_file_location,filename)
-            files.append(LocalFile(filename))
+            files.append(LocalFile(file_location))
 
     return files
 
+# Generate list of arguments which is used by ArgSplitter
 def get_arguments(processed_pdf_file_location):
     args = list()
     split_info_location = "{}/{}".format(processed_pdf_file_location,"split_info.json")
@@ -77,24 +80,27 @@ def get_arguments(processed_pdf_file_location):
         data = json.load(j)
         length = data["total_page"]
         for filename in data["pages"]:
-            file_location = "{}/{}".format(processed_pdf_file_location,filename)
+            # file_location = "{}/{}".format(processed_pdf_file_location,filename)
             args.append([count_the_filename, filename])
-
-    print(args)
     return args
 
+# Create ganaga job
 def create_job():
-    inputfiles = get_input_files()
     j = Job()
     j.name = "Count The"
+    j.application.exe = "python"
+    j.application.args = ""
+    j.splitter = ArgSplitter(args = get_arguments('./pdf_pages'))
+    j.inputfiles = get_input_files('./pdf_pages')
+    # j.outputfiles = [LocalFile('output.txt')]
+    
+    j.postprocessors.append(CustomMerger(module = 'merger.py'))
+    
+    j.submit()
 
-# processed_pdf_location = split_pdf_files("CERN.pdf")
+# Run
+def run():
+    split_pdf_files("CERN.pdf")
+    create_job()
 
-# print(processed_pdf_location)
-
-# files = get_input_files("./pdf_pages")
-args = get_arguments("./pdf_pages")
-
-# print(files, args)
-
-
+run()
