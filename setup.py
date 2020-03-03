@@ -12,6 +12,8 @@ setup(
     install_requires=[
           'pytest',
           'ganga',
+          'PyPDF2',
+          'pdfminer.six'
       ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
