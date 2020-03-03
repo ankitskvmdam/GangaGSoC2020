@@ -15,7 +15,6 @@ def hello_world_ganga():
     """
 
     j.submit()
-    print(j.status)
     print(jobs)
 
 hello_world_ganga()
