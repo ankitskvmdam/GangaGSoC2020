@@ -92,9 +92,9 @@ def create_job():
     j.application.args = ""
     j.splitter = ArgSplitter(args = get_arguments('./pdf_pages'))
     j.inputfiles = get_input_files('./pdf_pages')
-    # j.outputfiles = [LocalFile('output.txt')]
-    
-    j.postprocessors.append(CustomMerger(module = 'merger.py'))
+
+    merger_file_location = "{}/merger.py".format(os.getcwd())
+    j.postprocessors.append(CustomMerger(files = ['stdout'], module = merger_file_location))
     
     j.submit()
 
