@@ -1,0 +1,18 @@
+$width: 15.625rem;
+
+.sidebar {
+    width: $width;
+    padding: $padding-large;
+
+    .wrapper{
+        @extend %wrapper;
+        @include themify($themes) {
+            background: get-color(sidebar-background)
+        }
+
+        padding: $padding-normal 0;
+        height: auto;
+    }
+
+    font-family: abc;
+}

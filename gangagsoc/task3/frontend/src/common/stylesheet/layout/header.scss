@@ -1,0 +1,26 @@
+$height: 4.375rem;
+$logo-height: 2rem;
+
+.header {
+    @extend %flex-center;
+
+    @include themify($themes) {
+        background: get-color(header-background);
+    }
+
+    height: $height;
+    width: 100%;
+
+    .wrapper {
+        @extend %wrapper-bounded;
+        @extend %flex-center;
+    }
+
+    .logo {
+        img {
+            height: $logo-height
+        }
+
+        padding: $padding-tight $padding-large;
+    }
+}

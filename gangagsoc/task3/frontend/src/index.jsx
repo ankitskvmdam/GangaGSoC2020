@@ -1,10 +1,17 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route } from 'react-router-dom';
-import history from './common/script/history';
-import './common/stylesheet/main.scss';
 
+import { Router } from 'react-router-dom';
+
+import { Provider } from 'react-redux'
+import store from './redux/store'
+
+import './common/stylesheet/main.scss';
+import history from './common/script/history';
 import { setRootDivDimensions, setTheme } from "./common/script/utility"
+
+import MainContainer from './components/main-container'
 
 class Index extends React.Component{
     constructor(props){
@@ -30,10 +37,15 @@ class Index extends React.Component{
     render(){
         return(
            <Router history={history}>
-               This is home
+               <MainContainer />
            </Router>
         )
     }
 }
 
-ReactDOM.render(<Index />, document.getElementById("ganga-app"));
+ReactDOM.render(
+    <Provider store = {store}>
+        <Index />
+    </Provider>, 
+    document.getElementById("ganga-app")
+);

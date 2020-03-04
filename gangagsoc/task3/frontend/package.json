@@ -45,6 +45,8 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "sugarss": "^2.0.0"

@@ -1,0 +1,25 @@
+%box-shadow {
+    @include themify($themes) {
+        box-shadow: 0 0.1875rem 0.3125rem get-color(wrapper-box-shadow-color);
+    }
+}
+
+%wrapper {
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+
+    @extend %box-shadow
+}
+
+%wrapper-bounded{
+    height: 100%;
+    width: 100%;
+    max-width: $max-container-width;
+}
+
+%flex-center {
+    display: flex;
+    justify-content: content;
+    align-items: center;
+}
