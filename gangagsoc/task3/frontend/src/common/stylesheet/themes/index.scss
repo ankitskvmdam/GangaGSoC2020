@@ -1,2 +1,7 @@
 @import "./light";
 @import "./dark";
+
+$themes: (
+    light: $light,
+    dark: $dark
+)

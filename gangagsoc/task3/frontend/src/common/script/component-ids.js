@@ -1,0 +1,1 @@
+export const rootDivId = 'ganga-app'
