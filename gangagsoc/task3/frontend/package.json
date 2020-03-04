@@ -1,0 +1,52 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p --progress --config webpack.config.js",
+    "watch": "webpack --progress -d --config webpack.config.js --watch --watch-poll",
+    "server": "webpack-dev-server",
+    "dev": "concurrently --prefix '{time}-{pid}' 'npm run watch' 'npm run server' "
+  },
+  "keywords": [],
+  "author": "Ankit Kumar",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "extract-css-chunks-webpack-plugin": "^4.6.0",
+    "lost": "^8.3.1",
+    "node-sass": "^4.12.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "rucksack-css": "^1.0.2",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "clean-jsdoc-theme": "^2.2.11",
+    "concurrently": "^5.1.0",
+    "css-loader": "^3.4.2",
+    "cssnano": "^4.1.10",
+    "cssnano-preset-advanced": "^4.0.7",
+    "file-loader": "^5.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.3",
+    "sugarss": "^2.0.0"
+  }
+}
