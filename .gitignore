@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # task1 output files
-task1/pdf_pages/**
+**/task1/pdf_pages/**
 
 # macos files
 .DS_Store
