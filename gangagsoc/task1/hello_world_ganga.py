@@ -23,7 +23,7 @@ def hello_world_ganga():
 
 
 j = hello_world_ganga()
-status = run_until_state(job = j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
+status = run_until_state(j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
 
 if status == True:
     f = open(os.path.join(j.outputdir, "stdout"))

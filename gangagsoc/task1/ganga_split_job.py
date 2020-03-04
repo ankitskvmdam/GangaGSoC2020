@@ -1,11 +1,13 @@
 import ganga.ganga
 from ganga import Job, ArgSplitter, LocalFile, CustomMerger
-
 from PyPDF2 import PdfFileReader, PdfFileWriter
+
 import os
 import shutil
 import json
 import re
+
+from monitoring import run_until_state
 
 count_the_filename = "count_the.py"
 
@@ -108,9 +110,26 @@ def create_job():
     
     j.submit()
 
+    return j
+
+# Monitor job
+def monitor_job(j):
+    status = run_until_state(j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
+    if status == True:
+        f = open(os.path.join(j.outputdir, "stdout"))
+        print("******************")
+        print("    Output")
+        print("******************\n\nCount\n----------")
+        print(f.read())
+        print("\n\n\n******END********\n\n\n")
+
+    else:
+        print(j.status)
+
 # Run
 def run():
     split_pdf_files("CERN.pdf")
-    create_job()
+    j = create_job()
+    monitor_job(j)
 
 run()
