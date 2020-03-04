@@ -10,9 +10,54 @@ $width: 15.625rem;
             background: get-color(sidebar-background)
         }
 
-        padding: $padding-normal 0;
+        padding: $padding-large 0;
         height: auto;
+
+        margin-bottom: 2rem;
     }
 
-    font-family: abc;
+    .item {
+        @extend %align-center;
+
+        @include themify($themes) {
+            color: get-color(sidebar-text-color)
+        }
+
+        &.active, &:hover {
+            @include themify($themes) {
+                border-left: 0.25rem solid get-color(sidebar-border-color);
+                color: get-color(sidebar-text-active-color);
+                background: get-color(sidebar-item-active-background);
+
+                // svg {
+                //     @include themify($themes) {
+                //         fill: get-color(sidebar-text-active-color);
+                //     }
+                // }
+                
+            }
+
+            &.active{
+              font-family: $sans-serif-bold;  
+            }
+
+            padding: $padding-normal;
+        }
+
+        padding: $padding-normal $padding-free;
+        font-family: $sans-serif-regular;
+
+        .icon {
+            height: 1.125rem;
+
+            svg {
+                fill: red;
+            }
+        }
+
+        .title {
+            padding-left: $padding-normal;
+            display: inline-block;
+        }
+    }
 }
