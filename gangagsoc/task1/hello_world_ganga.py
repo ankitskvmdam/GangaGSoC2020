@@ -1,8 +1,15 @@
 import ganga.ganga
-from ganga import Job, Executable, Local, jobs
+from ganga import Job, Executable, Local, jobs, disableMonitoring, enableMonitoring
+from GangaCore.GPIDev.Base.Proxy import proxy_wrap
+
+import time
+from datetime import datetime, timedelta
+
 
 
 def hello_world_ganga():
+    disableMonitoring()
+
     """ 
         This function will create a hello world job Ganga job that executes on Local backend
     """
@@ -15,6 +22,38 @@ def hello_world_ganga():
     """
 
     j.submit()
-    print(jobs)
 
-hello_world_ganga()
+    return j
+
+
+@proxy_wrap
+def run_until_state(job, state, timeout=60, break_states=None, sleep_period=0.5):
+    enableMonitoring()
+    j = job
+
+    if break_states is None:
+        break_states = []
+
+    backend = type(j.backend)
+
+    end_time = datetime.utcnow() + timedelta(seconds=timeout)
+
+    while j.status != state and datetime.utcnow() < end_time:
+        backend.master_updateMonitoringInformation([j])
+        print('Job {} is in state {}'.format(j.id, j.status))
+        if j.status in break_states:
+            print('Monitoring returning False due to break state "{}"'.format(j.status))
+            return False
+        time.sleep(sleep_period)
+    return j.status == state
+
+
+j = hello_world_ganga()
+status = run_until_state(job = j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
+
+if status == True:
+    print("Output: ")
+    print(j.peek("stdout"))
+
+else:
+    print(j.status)
