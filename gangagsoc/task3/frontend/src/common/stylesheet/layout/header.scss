@@ -1,5 +1,5 @@
 $height: 4.375rem;
-$logo-height: 2rem;
+$logo-dimension: 2rem;
 
 .header {
     @extend %flex-center;
@@ -14,13 +14,13 @@ $logo-height: 2rem;
     .wrapper {
         @extend %wrapper-bounded;
         @extend %flex-center;
+        
+        justify-content: flex-start;
     }
 
     .logo {
-        img {
-            height: $logo-height
-        }
-
+        height: $logo-dimension;
+        width: auto;
         padding: $padding-tight $padding-large;
     }
 }

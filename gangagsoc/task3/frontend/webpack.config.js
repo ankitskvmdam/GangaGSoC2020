@@ -31,8 +31,12 @@ const config = {
                 use:'babel-loader'
             },
             {
-                test: /\.(png|gif|svg|jpg|pdf)$/,
+                test: /\.(png|gif|jpg|pdf)$/,
                 use: 'file-loader'
+            },
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack']
             },
             {
                 test: /\.(mp4|flv|webm)$/,

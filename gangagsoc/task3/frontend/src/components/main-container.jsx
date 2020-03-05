@@ -1,7 +1,8 @@
 import React from 'react'
 
-import Header from "./header"
-import Sidebar from "./sidebar"
+import Header from './header'
+import Sidebar from './sidebar'
+import Workspace from './workspace'
 
 class MainContainer extends React.Component{
     constructor(props){
@@ -11,9 +12,10 @@ class MainContainer extends React.Component{
     render(){
         return(
             <div className='main'>
-                <div className="wrapper">
-                    <Header />
+                <Header />
+                <div className='main-wrapper'>
                     <Sidebar />
+                    <Workspace />
                 </div>
             </div>
         )

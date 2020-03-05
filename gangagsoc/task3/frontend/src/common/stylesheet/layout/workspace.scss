@@ -1,0 +1,18 @@
+.container {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    flex: 1;
+
+    .container-wrapper{
+        @extend %wrapper;
+
+        @include themify($themes) {
+            background: get-color(workspace-background)
+        }
+
+        padding: $padding-large;
+
+        font-family: $serif-regular;
+    }
+}

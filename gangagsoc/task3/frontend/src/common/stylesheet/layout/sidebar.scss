@@ -1,8 +1,8 @@
-$width: 15.625rem;
+$width: 15rem;
 
 .sidebar {
     width: $width;
-    padding: $padding-large;
+    margin-right: $padding-large;
 
     .wrapper{
         @extend %wrapper;
@@ -12,15 +12,24 @@ $width: 15.625rem;
 
         padding: $padding-large 0;
         height: auto;
-
         margin-bottom: 2rem;
+
+        .heading{
+            font-family: muli-bold;
+            font-size: 1.25rem;
+            padding: 0px $padding-large $padding-normal;
+        }
     }
 
     .item {
         @extend %align-center;
 
         @include themify($themes) {
-            color: get-color(sidebar-text-color)
+            color: get-color(sidebar-text-color);
+
+            .icon {
+                fill: get-color(sidebar-text-color);
+            }
         }
 
         &.active, &:hover {
@@ -28,36 +37,31 @@ $width: 15.625rem;
                 border-left: 0.25rem solid get-color(sidebar-border-color);
                 color: get-color(sidebar-text-active-color);
                 background: get-color(sidebar-item-active-background);
-
-                // svg {
-                //     @include themify($themes) {
-                //         fill: get-color(sidebar-text-active-color);
-                //     }
-                // }
-                
+                .icon {
+                    fill: get-color(sidebar-text-active-color);
+                }
             }
-
-            &.active{
-              font-family: $sans-serif-bold;  
-            }
-
-            padding: $padding-normal;
+            padding: $padding-tight $padding-large $padding-tight $padding-1;
         }
 
-        padding: $padding-normal $padding-free;
+        &.active{
+            font-family: $sans-serif-bold;  
+        }
+
+
+        padding: $padding-tight $padding-large ;
         font-family: $sans-serif-regular;
 
         .icon {
-            height: 1.125rem;
+            height: $icon-dimension;
+            width: $icon-dimension;
 
-            svg {
-                fill: red;
-            }
         }
 
         .title {
             padding-left: $padding-normal;
             display: inline-block;
+            flex: 1;
         }
     }
 }
