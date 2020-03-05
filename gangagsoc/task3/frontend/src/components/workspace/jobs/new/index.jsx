@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Form from './from'
 class Index extends React.Component{
     constructor(props){
         super(props)
@@ -8,7 +9,11 @@ class Index extends React.Component{
     render(){
         return(
             <div className='container-wrapper'>
-                Create New Jobs
+                <h1 className="heading">
+                    Create New Job
+                </h1>
+
+                <Form />
             </div>
         )
     }

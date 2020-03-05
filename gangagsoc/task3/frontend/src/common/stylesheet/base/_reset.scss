@@ -17,3 +17,10 @@ body {
 a {
     text-decoration: none;
 }
+
+
+#ganga-app {
+    @include themify($themes) {
+        color: get-color(text-color)
+    }
+}

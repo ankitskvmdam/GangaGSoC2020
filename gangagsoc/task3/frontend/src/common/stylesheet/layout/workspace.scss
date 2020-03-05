@@ -12,7 +12,12 @@
         }
 
         padding: $padding-large;
-
         font-family: $serif-regular;
+
+        .heading {
+            font-family: $serif-bold;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
     }
 }
