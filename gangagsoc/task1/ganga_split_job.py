@@ -60,8 +60,8 @@ def split_pdf_files(pdf_file_path):
     with open('split_info.json', 'w') as j:
         j.write(json_data)
 
-
     processed_pdf_file_location = os.path.join(directory_containing_pdf, "pdf_pages")
+
     # copying the pdf pages to pdf_pages directory 
     move_target_files(".", r"{}_page.*".format(filename), processed_pdf_file_location)
     os.replace("split_info.json", os.path.join(processed_pdf_file_location, "split_info.json"))
@@ -70,7 +70,7 @@ def split_pdf_files(pdf_file_path):
 
 # Generate list of files that are given to ganga
 def get_input_files(processed_pdf_file_location):
-    files = [count_the_filename, "merger.py"]
+    files = [count_the_filename]
     split_info_location = os.path.join(processed_pdf_file_location, "split_info.json")
 
     # opening split_info.json
@@ -132,4 +132,5 @@ def run():
     j = create_job()
     monitor_job(j)
 
-run()
+if __name__ == "__main__":
+    run()
