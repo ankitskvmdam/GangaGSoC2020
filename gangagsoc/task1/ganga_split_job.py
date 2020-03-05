@@ -9,7 +9,21 @@ import re
 
 from monitoring import run_until_state
 
+
+# Return absolute path of the file. (relative path must be give)
+def get_abs_path(file):
+    current_directory_with_file_name = os.path.abspath(__file__)
+    current_directory = current_directory_with_file_name.split(os.path.sep)[:-1]
+    required_path = os.path.join(os.path.sep, *current_directory, file)
+    return required_path
+
 count_the_filename = "count_the.py"
+pdf_file_location = get_abs_path("CERN.pdf")
+merger_file_location = get_abs_path("merger.py")
+count_the_file_location = get_abs_path("count_the.py")
+
+# store the location of directory containing the split pages of pdf.
+processed_pdf_file_location = "" 
 
 # Move target files
 def move_target_files(src_path, src_file_exp, dest):
@@ -22,6 +36,7 @@ def move_target_files(src_path, src_file_exp, dest):
 
 # Split the pdf into single pages
 def split_pdf_files(pdf_file_path):
+    global processed_pdf_file_location
     pdf = PdfFileReader(pdf_file_path)
     pdf_info = dict()
 
@@ -31,9 +46,9 @@ def split_pdf_files(pdf_file_path):
     directory_containing_pdf = "."
 
     if len(path_list) != 1:
-        directory_containing_pdf = os.path.join(*path_list[:-1])
+        directory_containing_pdf = os.path.join(os.path.sep,*path_list[:-1])
 
-    # Creating a directory where pages where store after splitting
+    # Creating a directory where pages will store after splitting
     os.makedirs(os.path.join(directory_containing_pdf, "pdf_pages"), exist_ok=True)
 
     total_page = pdf.getNumPages()
@@ -53,42 +68,39 @@ def split_pdf_files(pdf_file_path):
 
         out.close()
     
-    pdf_info["pages"] = page_filenames
-
-    json_data = json.dumps(pdf_info)
-    
-    with open('split_info.json', 'w') as j:
-        j.write(json_data)
-
     processed_pdf_file_location = os.path.join(directory_containing_pdf, "pdf_pages")
+
+    # storing information of splitting into json file.
+    # we will use this information in later process.
+    split_info_file = os.path.join(processed_pdf_file_location, "split_info.json")
+    
+    pdf_info["pages"] = page_filenames
+    json_data = json.dumps(pdf_info)
+    with open(split_info_file, 'w') as j:
+        j.write(json_data)
 
     # copying the pdf pages to pdf_pages directory 
     move_target_files(".", r"{}_page.*".format(filename), processed_pdf_file_location)
-    os.replace("split_info.json", os.path.join(processed_pdf_file_location, "split_info.json"))
 
     return processed_pdf_file_location
 
-# Generate list of files that are given to ganga
-def get_input_files(processed_pdf_file_location):
-    files = [count_the_filename]
+# Returns the list of files which will be given to ganga.
+def get_input_files():
+    files = [count_the_file_location]
     split_info_location = os.path.join(processed_pdf_file_location, "split_info.json")
-
-    # opening split_info.json
     with open(split_info_location, "r") as j:
         data = json.load(j)
         length = data["total_page"]
         for filename in data["pages"]:
             file_location = os.path.join(processed_pdf_file_location,filename)
             files.append(LocalFile(file_location))
-
     return files
 
-# Generate list of arguments which is used by ArgSplitter
-def get_arguments(processed_pdf_file_location):
+# Returns the list of arguments used by ganga to process splitting pdf.
+def get_arguments():
     args = list()
     split_info_location = os.path.join(processed_pdf_file_location, "split_info.json")
 
-    # opening split_info.json
     with open(split_info_location, "r") as j:
         data = json.load(j)
         length = data["total_page"]
@@ -102,14 +114,10 @@ def create_job():
     j.name = "Count The"
     j.application.exe = "python"
     j.application.args = ""
-    j.splitter = ArgSplitter(args = get_arguments('./pdf_pages'))
-    j.inputfiles = get_input_files('./pdf_pages')
-
-    merger_file_location = os.path.join(os.getcwd(), "merger.py")
+    j.splitter = ArgSplitter(args = get_arguments())
+    j.inputfiles = get_input_files()
     j.postprocessors.append(CustomMerger(files = ['stdout'], module = merger_file_location))
-    
     j.submit()
-
     return j
 
 # Monitor job
@@ -128,7 +136,7 @@ def monitor_job(j):
 
 # Run
 def run():
-    split_pdf_files("CERN.pdf")
+    split_pdf_files(pdf_file_location)
     j = create_job()
     monitor_job(j)
 
