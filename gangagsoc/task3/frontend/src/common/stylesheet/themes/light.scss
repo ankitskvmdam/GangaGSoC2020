@@ -1,13 +1,30 @@
+$primary-color-light: #0072bc;
+
 $light: (
+    primary-color: $primary-color-light,
+    primary-background-text-color: #fff,
     text-color: #000,
     main-background: #EEF2F5,
     header-background: #FFF,
+    
+    // Sidebar
     sidebar-background: #FFF,
     sidebar-text-color: #111,
-    sidebar-text-active-color: #0072bc,
-    sidebar-border-color: #0072bc,
+    sidebar-text-active-color: $primary-color-light,
+    sidebar-border-color: $primary-color-light,
     sidebar-item-active-background: #f7f7f7,
-    wrapper-box-shadow-color: #eee,
+    // -------
+
+    wrapper-box-shadow-color: #ccc,
     workspace-background: #fff,
-    form-label-color: #333,
+    
+    // form
+    form-deactive-color-text: #aaa,
+    form-active-color-text: #101010,
+    // ----------
+
+    // Component
+    input-border-deactive-color: #aaa,
+    input-border-active-color: $primary-color-light,
+
 )

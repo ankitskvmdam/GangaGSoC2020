@@ -2,8 +2,22 @@
     border: none;
     padding: $padding-normal 0;
     display: block;
-    
+    width: 100%;
+    max-width: $input-max-width;
+    font-family: $serif-regular;
+    font-size: .875rem;
+
     &.outline {
-        border-bottom: 2px solid #007bff;
+        border-bottom: 2px solid;
+
+        @include themify($themes) {
+            border-bottom-color: get-color(text-color)
+        }
+
+        &:hover, &:focus {
+            @include themify($themes) {
+                border-bottom-color: get-color(input-border-active-color);
+            }
+        }
     }
 }

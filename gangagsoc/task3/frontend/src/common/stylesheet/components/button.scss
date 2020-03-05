@@ -1,0 +1,27 @@
+.button {
+    @extend %border-radius;
+    @extend %box-shadow;
+
+    border: none;
+    min-width: $button-min-width;
+    padding: $padding-normal $padding-large;
+    font-family: $serif-regular;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: $transition;
+
+    &.primary {
+        @include themify($themes) {
+            background: lighten(get-color(primary-color), 10%);
+            color: get-color(primary-background-text-color);
+
+            &:hover {
+                background: get-color(primary-color);
+            }
+        }
+
+        &:active{
+            box-shadow: none;
+        }
+    }
+}

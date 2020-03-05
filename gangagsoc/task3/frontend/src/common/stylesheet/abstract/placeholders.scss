@@ -4,12 +4,16 @@
     }
 }
 
+%border-radius {
+    border-radius: 1rem;
+}
+
 %wrapper {
+    @extend %border-radius;
+    @extend %box-shadow;
+    
     height: 100%;
     width: 100%;
-    border-radius: 1rem;
-
-    @extend %box-shadow
 }
 
 %wrapper-bounded{

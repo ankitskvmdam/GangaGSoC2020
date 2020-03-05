@@ -1,13 +1,28 @@
+$primary-color-dark: #ffdd67;
+
 $dark: (
+    primary-color: $primary-color-dark,
+    primary-background-text-color: #000,
     text-color: #fff,
     main-background: #222,
     header-background: #000,
+
+    // Sidebar
     sidebar-background: #000,
     sidebar-text-color: #eee,
-    sidebar-text-active-color: #ffdd67,
-    sidebar-border-color: #ffdd67,
+    sidebar-text-active-color: $primary-color-dark,
+    sidebar-border-color: $primary-color-dark,
     sidebar-item-active-background: #101010,
-    wrapper-box-shadow-color: #111,
+    // -----------------
+    wrapper-box-shadow-color: #333,
     workspace-background: #000,
-    form-label-color: #ccc,
+
+    // from
+    form-deactive-color-text: #777,
+    form-active-color-text: #f7f7f7,
+    // -------
+
+    // Components
+    input-border-deactive-color: #777,
+    input-border-active-color: $primary-color-dark
 )

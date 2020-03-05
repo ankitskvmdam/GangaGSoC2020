@@ -10,11 +10,11 @@ class From extends React.Component{
             <form action="" className="form">
                 <div className="form-group">
                     <label htmlFor="job-name" className="label">Job Name</label>
-                    <input name="job-name" type="text" className="input outline"/>
+                    <input name="job-name" type="text" className="input outline" placeholder="Enter Job Name (like: My First Job)" />
                 </div>
 
                 <div className="form-button-container">
-                    <button>Submit</button>
+                    <button className="button primary">Submit</button>
                 </div>
             </form>
         )

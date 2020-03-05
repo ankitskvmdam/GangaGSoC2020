@@ -4,21 +4,22 @@
     padding: $padding-large;
 
     .form-group {
-
+        display: flex;
+        flex-direction: column;
     }
 
     .form-button-container {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        margin-top: $padding-large;
     }
 
     .label {
         font-size: 0.75rem;
-        text-transform: uppercase;
         display: block;
 
         @include themify($themes) {
-            color: get-color(form-label-color)
+            color: get-color(text-color)
         }
     }
 }
