@@ -12,7 +12,7 @@ from monitoring import run_until_state
 
 # Return absolute path of the file. (relative path must be give)
 def get_abs_path(file):
-    current_directory_with_file_name = os.path.abspath(__file__)
+    current_directory_with_file_name = os.path.realpath(__file__)
     current_directory = current_directory_with_file_name.split(os.path.sep)[:-1]
     required_path = os.path.join(os.path.sep, *current_directory, file)
     return required_path
