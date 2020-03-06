@@ -15,13 +15,19 @@
             background: lighten(get-color(primary-color), 10%);
             color: get-color(primary-background-text-color);
 
-            &:hover {
+            &.active:hover {
                 background: get-color(primary-color);
+            }
+
+            &.disable {
+                background: darken(get-color(primary-color), 30%);
+                cursor: not-allowed;
             }
         }
 
         &:active{
             box-shadow: none;
         }
+
     }
 }

@@ -16,7 +16,7 @@ class Index extends React.Component{
                 </h1>
 
                 <Form />
-                <JobsDetails />
+                {/* <JobsDetails /> */}
             </div>
         )
     }

@@ -14,7 +14,7 @@
             border-bottom-color: get-color(text-color)
         }
 
-        &:hover, &:focus {
+        &.active:hover, &.active:focus {
             @include themify($themes) {
                 border-bottom-color: get-color(input-border-active-color);
             }
