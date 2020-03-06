@@ -7,8 +7,7 @@ import shutil
 import json
 import re
 import inspect
-from monitoring import run_until_state
-
+from gangagsoc.task1.monitoring import run_until_state
 
 # Return absolute path of the file. (relative path must be give)
 def get_abs_path(file):
