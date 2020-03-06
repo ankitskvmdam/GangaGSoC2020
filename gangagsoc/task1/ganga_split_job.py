@@ -11,9 +11,9 @@ import inspect
 
 # Return absolute path of the file. (relative path must be give)
 def get_abs_path(file):
-    current_directory_with_file_name = os.path.realpath(__file__)
-    current_directory = os.path.join(os.path.sep,*current_directory_with_file_name.split(os.path.sep)[:-1])
-    file_path = os.path.realpath(os.path.join(current_directory, file))
+    path = os.path
+    current_directory = path.dirname(path.realpath(__file__))
+    file_path = path.realpath(path.join(current_directory, file))
     return file_path
 
 count_the_filename = "count_the.py"

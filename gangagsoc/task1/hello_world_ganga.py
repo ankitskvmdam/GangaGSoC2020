@@ -1,6 +1,6 @@
 import ganga.ganga
 from ganga import Job, Executable, Local, jobs
-from monitoring import run_until_state
+from gangagsoc.task1.monitoring import run_until_state
 
 import os
 
