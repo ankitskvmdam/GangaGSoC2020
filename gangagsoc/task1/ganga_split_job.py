@@ -6,19 +6,19 @@ import os
 import shutil
 import json
 import re
-
+import inspect
 from monitoring import run_until_state
 
 
 # Return absolute path of the file. (relative path must be give)
 def get_abs_path(file):
     current_directory_with_file_name = os.path.realpath(__file__)
-    current_directory = current_directory_with_file_name.split(os.path.sep)[:-1]
-    required_path = os.path.join(os.path.sep, *current_directory, file)
-    return required_path
+    current_directory = os.path.join(os.path.sep,*current_directory_with_file_name.split(os.path.sep)[:-1])
+    file_path = os.path.realpath(os.path.join(current_directory, file))
+    return file_path
 
 count_the_filename = "count_the.py"
-pdf_file_location = get_abs_path("CERN.pdf")
+pdf_file_location = get_abs_path(os.path.join('..', '..', 'CERN.pdf'))
 merger_file_location = get_abs_path("merger.py")
 count_the_file_location = get_abs_path("count_the.py")
 
@@ -41,8 +41,7 @@ def split_pdf_files(pdf_file_path):
     pdf_info = dict()
 
     path_list = pdf_file_path.split(os.path.sep)
-    filename = path_list[-1]
-    filename = filename.split('.')[0]
+    filename = path_list[-1].split('.')[0]
     directory_containing_pdf = "."
 
     if len(path_list) != 1:
