@@ -13,16 +13,17 @@ def hello_world_ganga():
     return j
 
 
-j = hello_world_ganga()
-status = run_until_state(j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
+if __name__ == '__main__':
+    j = hello_world_ganga()
+    status = run_until_state(j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
 
-if status == True:
-    f = open(os.path.join(j.outputdir, "stdout"))
-    print("******************")
-    print("    Output")
-    print("******************")
-    print(f.read())
-    print("\n\n\n******END********\n\n\n")
+    if status == True:
+        f = open(os.path.join(j.outputdir, "stdout"))
+        print("******************")
+        print("    Output")
+        print("******************")
+        print(f.read())
+        print("\n\n\n******END********\n\n\n")
 
-else:
-    print(j.status)
+    else:
+        print(j.status)
