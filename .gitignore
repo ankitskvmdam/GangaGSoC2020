@@ -130,3 +130,6 @@ dmypy.json
 
 # macos files
 .DS_Store
+
+# task1 output files
+pdf_pages/**
