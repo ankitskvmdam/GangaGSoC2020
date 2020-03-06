@@ -1,5 +1,6 @@
 import ganga.ganga
 from ganga import Job, ArgSplitter, LocalFile, CustomMerger
+from gangagsoc.task1.monitoring import run_until_state
 from PyPDF2 import PdfFileReader, PdfFileWriter
 
 import os
@@ -7,7 +8,6 @@ import shutil
 import json
 import re
 import inspect
-from gangagsoc.task1.monitoring import run_until_state
 
 # Return absolute path of the file. (relative path must be give)
 def get_abs_path(file):
