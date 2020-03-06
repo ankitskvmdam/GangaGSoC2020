@@ -13,5 +13,6 @@
         @extend %wrapper-bounded;
         display: flex;
         padding: $padding-large;
+        overflow: hidden;
     }
 }

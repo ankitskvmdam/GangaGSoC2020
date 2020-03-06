@@ -12,11 +12,10 @@
 
         padding: $padding-large;
         font-family: $serif-regular;
+        overflow: auto;
 
         .heading {
-            font-family: $serif-bold;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            @extend %h2;
         }
     }
 }

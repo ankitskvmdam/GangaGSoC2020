@@ -1,11 +1,11 @@
 %box-shadow {
     @include themify($themes) {
-        box-shadow: 0 0.1875rem 0.3125rem get-color(wrapper-box-shadow-color);
+        box-shadow: 0 pixel-to-rem(3) pixel-to-rem(5) get-color(wrapper-box-shadow-color);
     }
 }
 
 %border-radius {
-    border-radius: 1rem;
+    border-radius: pixel-to-rem(16);
 }
 
 %wrapper {
@@ -31,4 +31,21 @@
 %align-center {
     display: flex;
     align-items: center;
+}
+
+%heading {
+    font-family: $serif-bold;
+}
+
+%h2 {
+    @extend %heading;
+
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+%h3 {
+    @extend %heading;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
 }

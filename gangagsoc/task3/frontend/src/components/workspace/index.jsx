@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect} from 'react-router-dom'
 
 import Dashboard from './dashboard'
 import Settings from './settings'
@@ -17,6 +17,7 @@ class Index extends React.Component{
         return(
             <div className='container'>
                 <Switch>
+                    <Redirect from = "/" to={path.dashboard} exact={true}/>
                     <Route path={path.dashboard} component={Dashboard} />
                     <Route path={path.settings} component={Settings} />
                     <Route path={path.jobs} component={Jobs} />

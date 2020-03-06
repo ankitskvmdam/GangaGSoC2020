@@ -1,0 +1,53 @@
+pre {
+    @extend %border-radius;
+    @include themify($themes) {
+        background: get-color(pre-background)
+    }
+
+    margin: pixel-to-rem(30) pixel-to-rem(20);
+    padding: pixel-to-rem(16) pixel-to-rem(28);
+
+    .pre-title{
+        @extend %h3;
+        @include themify($themes) {
+            color: get-color(code-heading)
+        }
+    }
+
+    @include themify($themes) {
+        code {
+            color: get-color(code-keyword);
+
+            .token {
+                &.keyword {
+                    color: get-color(code-keyword)
+                }
+
+                &.string {
+                    color: get-color(code-string)
+                }
+                &.operator {
+                    color: get-color(code-operator)
+                }
+
+                &.punctuation {
+                    color: get-color(code-punctuation)
+                }
+
+                &.function {
+                    color: get-color(code-function)
+                }
+
+                &.number {
+                    color: get-color(code-number)
+                }
+
+                &.constant, &.boolean {
+                    color: get-color(code-constant)
+                }
+            }
+        }
+
+    }
+
+}

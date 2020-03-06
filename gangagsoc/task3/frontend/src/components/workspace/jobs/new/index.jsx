@@ -1,6 +1,8 @@
 import React from 'react'
 
 import Form from './from'
+import JobsDetails from './jobs-details'
+
 class Index extends React.Component{
     constructor(props){
         super(props)
@@ -14,6 +16,7 @@ class Index extends React.Component{
                 </h1>
 
                 <Form />
+                <JobsDetails />
             </div>
         )
     }
