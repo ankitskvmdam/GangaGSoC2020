@@ -34,12 +34,12 @@ def move_target_files(src_path, src_file_exp, dest):
 
 
 # Split the pdf into single pages
-def split_pdf_files(pdf_file_path):
+def split_pdf_files():
     global processed_pdf_file_location
-    pdf = PdfFileReader(pdf_file_path)
+    pdf = PdfFileReader(pdf_file_location)
     pdf_info = dict()
 
-    path_list = pdf_file_path.split(os.path.sep)
+    path_list = pdf_file_location.split(os.path.sep)
     filename = path_list[-1].split('.')[0]
     directory_containing_pdf = "."
 
@@ -134,9 +134,11 @@ def monitor_job(j):
 
 # Run
 def run():
-    split_pdf_files(pdf_file_location)
+    split_pdf_files()
     j = create_job()
-    monitor_job(j)
+    return j
 
 if __name__ == "__main__":
-    run()
+    j = run()
+    monitor_job(j)
+
