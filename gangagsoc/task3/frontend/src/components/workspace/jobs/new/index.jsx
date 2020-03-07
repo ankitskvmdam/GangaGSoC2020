@@ -2,6 +2,7 @@ import React from 'react'
 
 import Form from './from'
 import JobsDetails from './jobs-details'
+import ContainerHeading from '../../../common/container-heading'
 
 class Index extends React.Component{
     constructor(props){
@@ -11,12 +12,9 @@ class Index extends React.Component{
     render(){
         return(
             <div className='container-wrapper'>
-                <h1 className="heading">
-                    Create New Job
-                </h1>
-
+                <ContainerHeading heading="Create New Job" />
                 <Form />
-                {/* <JobsDetails /> */}
+                <JobsDetails />
             </div>
         )
     }

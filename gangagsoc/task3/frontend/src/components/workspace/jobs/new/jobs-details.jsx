@@ -1,6 +1,6 @@
 import React from 'react'
-import Prism from 'prismjs/components/prism-core'
-import 'prismjs/components/prism-python'
+import CodePython from '../../../common/code-python'
+
 const jobs = `
 Job (
     outputsandbox = []  ,
@@ -55,18 +55,9 @@ class JobsDetails extends React.Component{
         super(props)
     }
 
-    componentDidMount(){
-        Prism.highlightAll()
-    }
-
     render(){
         return(
-            <pre lassName="line-numbers">
-                <div className="pre-title">Job details</div>
-                <code className="language-python">
-                    {jobs}
-                </code>
-            </pre>
+            <CodePython code={jobs} heading='Job Details'/>
         )
     }
 }
