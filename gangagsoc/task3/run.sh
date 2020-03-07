@@ -1,7 +1,20 @@
-rm -rf build
-mkdir build
+#!/bin/bash
+
 cd frontend
-npm run build
-mv dist/** ../build
-cd ../build
-echo visit http://localhost:8080
+if [ ! -d "./node_modules" ]; then
+  npm install
+fi
+if [ ! -d "./dist" ]; then
+  npm run build
+fi
+
+cd ../backend
+if [ -x "$(command -v pip3)" ]; then # if pip3 executable exists in PATH
+  pip3 install --editable .
+else
+  pip install --editable .
+fi
+
+export FLASK_APP=backend
+export FLASK_DEBUG=true
+flask run
