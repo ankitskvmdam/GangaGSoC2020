@@ -13,7 +13,14 @@ setup(
           'pytest',
           'ganga',
           'PyPDF2',
-          'pdfminer.six'
+          'pdfminer.six',
+          'flask',
+          'flask-socketio',
+          'python-dotenv',
+          'flask-cors',
+          'gunicorn',
+          'eventlet',
+
       ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
