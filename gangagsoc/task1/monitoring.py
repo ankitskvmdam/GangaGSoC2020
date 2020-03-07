@@ -4,8 +4,7 @@ from datetime import datetime, timedelta
 
 @proxy_wrap
 def run_until_state(j, state, timeout=60, break_states=None, sleep_period=0.5):
-    j
-
+    
     if break_states is None:
         break_states = []
 
