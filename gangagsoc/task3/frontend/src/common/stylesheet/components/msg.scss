@@ -1,0 +1,15 @@
+.msg-sm {
+    @extend %border-radius;
+    padding: $padding-large;
+    font-size: pixel-to-rem(12);
+
+    // This margin will be remove in final stage. This is here for minor fix.
+    margin: 0 pixel-to-rem(20);
+    
+    @include themify($themes) {
+        &.warning{
+            background: get-color(warning-msg-background);
+            color: get-color(warning-msg-color)
+        }
+    }
+}
