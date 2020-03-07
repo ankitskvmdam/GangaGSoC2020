@@ -4,9 +4,23 @@ import Form from './from'
 import JobsDetails from './jobs-details'
 import { ContainerHeading, MsgSm } from '../../../common'
 
+import socketIOClient from 'socket.io-client'
+
 class Index extends React.Component{
     constructor(props){
         super(props)
+    }
+
+    componentDidMount(){
+        console.log('trying to connect')
+
+        const socket = socketIOClient('http://127.0.0.1:9991')
+        socket.on('connect', () => {
+            console.log('sending data')
+            socket.emit('status')
+        })
+
+        socket.on('status', ()=>console.log('data revceived from server: ', ))
     }
 
     render(){

@@ -8,7 +8,7 @@ const RenderLinks = ({ links }) => {
         links.map( (item, key) => {
             return(
                 <NavLink to={item.link} className="item" activeClassName="active" key={key}>
-                    <item.icon class="icon" />
+                    <item.icon className="icon" />
                     <div className="title">
                         {item.title}
                     </div>

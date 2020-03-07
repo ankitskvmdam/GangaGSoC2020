@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux'
 
-export default combineReducers({
-
+const reducers = combineReducers({
+    test: ()=>'test'
 })
+
+
+export default reducers

@@ -14,7 +14,7 @@ class CodePython extends React.Component{
     render(){
         const { code, heading } = this.props
         return(
-            <pre lassName="line-numbers">
+            <pre className="line-numbers">
                 <div className="pre-title">{heading}</div>
                 <code className="language-python">
                     {code}
