@@ -1,4 +1,5 @@
 import os
+import ganga.ganga
 from gangagsoc.task3.gangabackend.backend import create_app
 
 app, socket = create_app()
