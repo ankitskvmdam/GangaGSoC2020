@@ -1,9 +1,9 @@
-import CodePython from './code-python'
+import Code from './code'
 import ContainerHeading from './container-heading'
 import MsgSm from './msg-sm'
 
 export {
-    CodePython,
+    Code,
     ContainerHeading,
     MsgSm
 }

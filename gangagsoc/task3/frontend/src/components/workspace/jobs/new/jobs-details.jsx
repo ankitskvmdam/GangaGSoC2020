@@ -1,8 +1,9 @@
 import React from 'react'
-import CodePython from '../../../common/code-python'
+import { Code } from '../../../common'
 
-import { socketCreateJobStatus } from '../../../../common/script/endpoints.js'
 import { connect } from 'react-redux'
+import {  socketReceiveJobDetails, socketGetJobDetials } from '../../../../common/script/endpoints'
+import { SOCKET_CONNECTED } from '../../../../redux/constants/socket'
 
 class JobsDetails extends React.Component{
     constructor(props){
@@ -10,31 +11,45 @@ class JobsDetails extends React.Component{
 
         this.state = {
           received: false,
-          details: null
+          details: null,
+          initialise: false,
         }
-
+        this.initSocket = this.initSocket.bind(this)
     }
     
-    componentDidMount(){
-      const { socket } = this.props
-      if(socket.socket){
-        socket.socket.on(socketCreateJobStatus, (data)=>{
-          this.setState({
-            received: true,
-            details: data
-          })
+    initSocket(socket){
+      socket.io.on(socketReceiveJobDetails, (data) => {
+        let job_details = JSON.parse(data.job_details)
+        
+        // For pretty print
+        job_details = JSON.stringify(job_details, undefined, 4)
+
+        this.setState({
+          received: true, 
+          details: job_details
         })
-      }
+      })
+
+      this.setState({initialise: true})
     }
 
     render(){
-      const { received, details } = this.state
+      const { received, details,initialise } = this.state
+      const { jobs, socket } = this.props
+
+      if(socket.status == SOCKET_CONNECTED) {
+
+        if(!initialise){
+          this.initSocket(socket)
+        }
+
+        if( jobs != undefined && jobs.get_details_of != null && !received){
+          socket.io.emit(socketGetJobDetials, jobs.get_details_of)
+        }
+      }
 
       if(received){
-        return(
-            <CodePython code={details} heading='Job Details'/>
-        )
-
+        return <Code code={details} heading='Job Details'/>
       }
 
       else {
@@ -46,7 +61,8 @@ class JobsDetails extends React.Component{
 }
 
 const mapStateToProps = (store) => ({
-  socket: store.socket
+  socket: store.socket,
+  jobs: store.jobs
   
 })
 
