@@ -4,26 +4,18 @@ import Form from './from'
 import JobsDetails from './jobs-details'
 import { ContainerHeading, MsgSm } from '../../../common'
 
-import socketIOClient from 'socket.io-client'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 
 class Index extends React.Component{
     constructor(props){
         super(props)
     }
 
-    componentDidMount(){
-        console.log('trying to connect')
-
-        const socket = socketIOClient('http://127.0.0.1:9991')
-        socket.on('connect', () => {
-            console.log('sending data')
-            socket.emit('status')
-        })
-
-        socket.on('status', ()=>console.log('data revceived from server: ', ))
-    }
-
     render(){
+        const { socket } = this.props
+        console.log(socket)
         return(
             <div className='container-wrapper'>
                 <ContainerHeading heading="Create New Job" />
@@ -35,4 +27,9 @@ class Index extends React.Component{
     }
 }
 
-export default Index
+const mapStateToProps = (store) => ({
+    socket: store.socket
+    
+})
+
+export default withRouter(connect(mapStateToProps)(Index))

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
+import socket from './socket'
 
 const reducers = combineReducers({
-    test: ()=>'test'
+    socket,
 })
 
 
