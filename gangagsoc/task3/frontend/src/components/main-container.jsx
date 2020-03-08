@@ -5,7 +5,7 @@ import Sidebar from './sidebar'
 import Workspace from './workspace'
 
 import io from 'socket.io-client'
-import { setSocket, removeSocket } from '../redux/actions/socket'
+import { setSocket } from '../redux/actions/socket'
 
 import { socketConnect, socketDisconnect, socketEndpoint } from '../common/script/endpoints'
 
@@ -19,13 +19,15 @@ class MainContainer extends React.Component{
     initSocket(){
         const { setSocket } = this.props
         const socket = io.connect(socketEndpoint)
+
         socket.on(socketConnect, ()=>{
             setSocket(socket)
         })
 
         socket.on(socketDisconnect, ()=>{
-            removeSocket()
+            console.log('disconnected')
         })
+
     }
 
     componentDidMount(){
@@ -52,7 +54,6 @@ const mapStateToProps = (store) => ({
 
 const mapActionToState = (dispatch) => ({
     setSocket: (socket) => dispatch(setSocket(socket)),
-    removeSocket: ()=> dispatch(removeSocket())
 })
 
 export default connect(mapStateToProps, mapActionToState)(MainContainer)

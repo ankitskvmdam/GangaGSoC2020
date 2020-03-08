@@ -4,18 +4,12 @@ import Form from './from'
 import JobsDetails from './jobs-details'
 import { ContainerHeading, MsgSm } from '../../../common'
 
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-
-
 class Index extends React.Component{
     constructor(props){
         super(props)
     }
 
     render(){
-        const { socket } = this.props
-        console.log(socket)
         return(
             <div className='container-wrapper'>
                 <ContainerHeading heading="Create New Job" />
@@ -27,9 +21,6 @@ class Index extends React.Component{
     }
 }
 
-const mapStateToProps = (store) => ({
-    socket: store.socket
-    
-})
 
-export default withRouter(connect(mapStateToProps)(Index))
+
+export default Index

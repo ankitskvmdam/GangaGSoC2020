@@ -1,6 +1,9 @@
 import React from 'react'
 import classnames from 'classnames'
 import { PulseLoader } from 'react-spinners'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { socketCreateJob } from '../../../../common/script/endpoints'
 
 class From extends React.Component{
     constructor(props){
@@ -15,19 +18,23 @@ class From extends React.Component{
 
     submitJob(e){
         e.preventDefault()
+        const { socket } = this.props
 
-        this.setState({
-            disable: true
+        const form = document.getElementById('create-job-form')
+        const jobName = form['job-name'].value
+
+        socket.socket.emit(socketCreateJob, {
+            "name": jobName
         })
     }
 
     render(){
         const { disable } = this.state
         return(
-            <form action="" className="form">
+            <form action="" className="form" id='create-job-form'>
                 <div className="form-group">
                     <label htmlFor="job-name" className="label">Job Name</label>
-                    <input name="job-name" type="text" className={classnames({"input outline": true, "active": !disable})} placeholder="Enter Job Name (like: My First Job)" disabled={disable}/>
+                    <input name="job-name" type="text" className={classnames({"input outline": true, "active": !disable})} placeholder="Job Name (like: My First Job)" disabled={disable}/>
                 </div>
 
                 <div className="form-button-container">
@@ -41,4 +48,9 @@ class From extends React.Component{
     }
 }
 
-export default From
+const mapStateToProps = (store) => ({
+    socket: store.socket
+    
+})
+
+export default withRouter(connect(mapStateToProps)(From))

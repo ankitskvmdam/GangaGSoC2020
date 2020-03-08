@@ -7,10 +7,10 @@ const setSocket = (socket) => {
     }
 }
 
-const removeSocket = () => {
+const removeSocket = (socket) => {
     return {
         type: SOCKET_DISCONNECTED,
-        data: null
+        data: socket
     }
 }
 

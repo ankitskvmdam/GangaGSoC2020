@@ -10,7 +10,7 @@ const socket = (state = initialState, action) => {
             return state = Object.assign({}, {socket: action.data})
 
         case SOCKET_DISCONNECTED:
-            return state = Object.assign({}, initialState)
+            return state = Object.assign({}, {socket: action.data})
 
         default:
             return state
