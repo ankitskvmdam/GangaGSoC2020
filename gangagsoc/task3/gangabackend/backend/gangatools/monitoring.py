@@ -3,10 +3,9 @@ import time
 from datetime import datetime, timedelta
 
 @proxy_wrap
-def run_until_state(j, state, timeout=60, break_states=None, sleep_period=0.5):
-    
-    if break_states is None:
-        break_states = []
+def monitor(j, timeout=60, sleep_period=0.5):
+    break_states = ['new', 'killed', 'failed', 'unknown', 'removed']
+    state = 'completed'
 
     backend = type(j.backend)
 
@@ -18,4 +17,4 @@ def run_until_state(j, state, timeout=60, break_states=None, sleep_period=0.5):
             print('Job failed due to "{}"'.format(j.status))
             return False
         time.sleep(sleep_period)
-    return j.status == state
+    return j.status
