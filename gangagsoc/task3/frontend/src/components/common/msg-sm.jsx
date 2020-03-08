@@ -1,8 +1,8 @@
 import React from 'react'
 
-const MsgSm = ({msg, type}) => {
+const MsgSm = ({msg, type, classList}) => {
     return(
-        <div className={"msg-sm " + type}>
+        <div className={"msg-sm " + type + ' ' + classList}>
             {msg}
         </div>
     )
@@ -10,7 +10,8 @@ const MsgSm = ({msg, type}) => {
 
 MsgSm.defaultProps = { 
     msg: '',
-    type: ''
+    type: '',
+    classList: ''
 }
 
 export default MsgSm

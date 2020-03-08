@@ -11,5 +11,15 @@
             background: get-color(warning-msg-background);
             color: get-color(warning-msg-color)
         }
+
+        &.error{
+            background: get-color(error-msg-background);
+            color: get-color(error-msg-color)
+        }
+
+        &.success{
+            background: get-color(success-msg-background);
+            color: get-color(success-msg-color)
+        }
     }
 }
