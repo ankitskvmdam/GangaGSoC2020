@@ -107,7 +107,7 @@ def get_arguments():
 # Create ganaga job
 def create_job():
     j = Job()
-    j.name = "Count The"
+    j.name = "Task 1"
     j.application.exe = "python"
     j.application.args = ""
     j.splitter = ArgSplitter(args = get_arguments())
