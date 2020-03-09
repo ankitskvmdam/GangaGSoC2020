@@ -88,7 +88,6 @@ def get_input_files():
     split_info_location = os.path.join(processed_pdf_file_location, "split_info.json")
     with open(split_info_location, "r") as j:
         data = json.load(j)
-        length = data["total_page"]
         for filename in data["pages"]:
             file_location = os.path.join(processed_pdf_file_location,filename)
             files.append(LocalFile(file_location))
@@ -101,7 +100,6 @@ def get_arguments():
 
     with open(split_info_location, "r") as j:
         data = json.load(j)
-        length = data["total_page"]
         for filename in data["pages"]:
             args.append([count_the_filename, filename])
     return args
