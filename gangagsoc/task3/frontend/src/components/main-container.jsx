@@ -13,6 +13,9 @@ class MainContainer extends React.Component{
     constructor(props){
         super(props)
 
+        this.state = {
+            socket: null
+        }
         this.initSocket = this.initSocket.bind(this)
     }
 
@@ -29,10 +32,15 @@ class MainContainer extends React.Component{
         })
         
         setSocket(socket)
+        this.setState({socket: socket})
     }
 
     componentDidMount(){
         this.initSocket()
+    }
+
+    componentWillUnmount(){
+        this.state.socket.off()
     }
     
     render(){

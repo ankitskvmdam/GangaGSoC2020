@@ -39,12 +39,18 @@ class From extends React.Component{
             //Job submitted successfully
             if(data.status == 200){
                 this.setState({
-                    jobStatus: "Job submitted successfully. Loading job details and result",
+                    jobStatus: "Job submitted successfully",
                     jobStatusDisplay: true,
                     type: "success"
                 })
-
                 this.props.getJobDetails(data.data.job_id)
+
+                // remove message after 3 sec.
+                setTimeout(()=>{
+                    this.setState({
+                        jobStatusDisplay: false
+                    })
+                }, 3000)
             }
 
             //Job not submitted successfully

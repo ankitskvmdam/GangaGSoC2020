@@ -1,9 +1,10 @@
 import React from 'react'
 import { Code } from '../../../common'
-
 import { connect } from 'react-redux'
 import {  socketReceiveJobDetails, socketGetJobDetials } from '../../../../common/script/endpoints'
 import { SOCKET_CONNECTED } from '../../../../redux/constants/socket'
+import { PulseLoader } from 'react-spinners'
+import classnames from 'classnames'
 
 class JobsDetails extends React.Component{
     constructor(props){
@@ -13,6 +14,7 @@ class JobsDetails extends React.Component{
           received: false,
           details: null,
           initialise: false,
+          loading: false,
         }
         this.initSocket = this.initSocket.bind(this)
         this.emitGetJobDetails = this.emitGetJobDetails.bind(this)
@@ -27,7 +29,8 @@ class JobsDetails extends React.Component{
 
         this.setState({
           received: true, 
-          details: job_details
+          details: job_details,
+          loading: false
         })
       })
 
@@ -36,6 +39,9 @@ class JobsDetails extends React.Component{
 
     emitGetJobDetails(socket, get_details_of){
       socket.io.emit(socketGetJobDetials, get_details_of)
+      this.setState({
+        loading: true
+      })
     }
 
     componentDidUpdate(prevProps){
@@ -77,15 +83,24 @@ class JobsDetails extends React.Component{
     }
 
     render(){
-      const { received, details } = this.state
+      const { received, details, loading } = this.state
 
       if(received){
-        return <Code code={details} heading='Job Details'/>
+        return <Code code={details} heading='Job'/>
       }
 
       else {
         return(
-          <div></div>
+          <div className={classnames({
+            'hidden': !loading,
+            'job-details-loading': true
+          })}>
+
+            <PulseLoader size={20}/>
+            <div>
+              Loading job details
+            </div>
+          </div>
         )
       }
     }
