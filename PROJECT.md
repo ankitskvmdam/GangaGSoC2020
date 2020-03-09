@@ -53,7 +53,7 @@ python -m unittest discover test "TestTask1Part*.py"
 ## Task3: Ganga GUI task
 Frontend and backend is separated. Frontend is in `gangagsoc/task3/frontend/` and backend is in `gangagsoc/task3/gangabackend/`.
 
-> Node and npm must be installed in you system. Installation instructions are available here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+> Node (v12.13.1 or greater) and npm(v6.12.1 or greater) must be installed in you system. Installation instructions are available here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
 ### Frontend
 Frontend is build using ReactJS(UI), React Router(managing navigation), Redux(managing state), Scss(Stylesheet), Webpack(module bunlder), Node (javascript runtime).
