@@ -6,7 +6,7 @@ import { submitNewJob } from '../../../../common/script/endpoints'
 import { MsgSm } from '../../../common'
 
 import { connect } from 'react-redux'
-import { getJobDetails } from '../../../../redux/actions/jobs'
+import { getJobDetails, resetJobDetails } from '../../../../redux/actions/jobs'
 
 class From extends React.Component{
     constructor(props){
@@ -24,6 +24,9 @@ class From extends React.Component{
 
     submitJob(e){
         e.preventDefault()
+        
+        const { resetJobDetails, getJobDetails } = this.props
+        resetJobDetails()
 
         const form = document.getElementById('create-job-form')
         const jobName = form['job-name'].value
@@ -43,7 +46,7 @@ class From extends React.Component{
                     jobStatusDisplay: true,
                     type: "success"
                 })
-                this.props.getJobDetails(data.data.job_id)
+                getJobDetails(data.data.job_id)
 
                 // remove message after 3 sec.
                 setTimeout(()=>{
@@ -64,6 +67,7 @@ class From extends React.Component{
                 
         })
         .catch( err => {
+            console.log(err)
             this.setState({disable: false})
         })
 
@@ -96,7 +100,8 @@ class From extends React.Component{
 }
 
 const mapActionToState = (dispatch) => ({
-    getJobDetails: (id) => dispatch(getJobDetails(id))
+    getJobDetails: (id) => dispatch(getJobDetails(id)),
+    resetJobDetails: () => dispatch(resetJobDetails())
 })
 
 export default connect(null, mapActionToState)(From)

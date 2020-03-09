@@ -3,6 +3,7 @@ import { Code } from '../../../common'
 import { connect } from 'react-redux'
 import {  socketReceiveJobDetails, socketGetJobDetials } from '../../../../common/script/endpoints'
 import { SOCKET_CONNECTED } from '../../../../redux/constants/socket'
+import { RESET_JOB_DETAILS } from '../../../../redux/constants/jobs'
 import { PulseLoader } from 'react-spinners'
 import classnames from 'classnames'
 
@@ -47,39 +48,49 @@ class JobsDetails extends React.Component{
     componentDidUpdate(prevProps){
       const { initialise } = this.state
       const { socket, jobs } = this.props
-      
-      if( !initialise && socket.status == SOCKET_CONNECTED ){
-        this.initSocket(socket)
-      }
 
-      if( prevProps != this.props  &&  socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
-        this.emitGetJobDetails(socket, jobs.get_details_of)
+      if( prevProps !== this.props ){
+        if( !initialise && socket.status == SOCKET_CONNECTED ){
+          this.initSocket(socket)
+        }
+  
+        if( socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
+          this.emitGetJobDetails(socket, jobs.get_details_of)
+        }
+  
+        if( jobs.action == RESET_JOB_DETAILS ){
+          this.setState({
+            received: false,
+            details: null,
+            loading: false
+          })
+        }
+
       }
 
     }
 
     componentDidMount(){
-      const { initialise } = this.state
-      const { socket, jobs } = this.props
+		const { initialise } = this.state
+		const { socket, jobs } = this.props
 
-      if( !initialise && socket.status == SOCKET_CONNECTED ){
-        this.initSocket(socket)
-      }
-
-      if( socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
-        this.emitGetJobDetails(socket, jobs.get_details_of)
-      }
-
+		if( !initialise && socket.status == SOCKET_CONNECTED ){
+			this.initSocket(socket)
+		}
+		
+		if( socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
+			this.emitGetJobDetails(socket, jobs.get_details_of)
+		}
     }
+	
+    componentWillUnmount() {
+		const { socket } = this.props
+		const { initialise } = this.state
 
-    componentWillUnmount(){
-      const { socket } = this.props
-      const { initialise } = this.state
-
-      if( initialise ) {
-        socket.io.off()
-        this.setState({initialise: false})
-      }
+		if( initialise ) {
+			socket.io.off()
+			this.setState({initialise: false})
+		}
     }
 
     render(){

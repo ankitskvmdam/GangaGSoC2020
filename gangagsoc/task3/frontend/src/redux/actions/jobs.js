@@ -5,7 +5,11 @@ const getJobDetails = (id) => ({
     data: id
 })
 
+const resetJobDetails = () => ({
+    type: CONSTANTS.RESET_JOB_DETAILS
+})
 
 export {
     getJobDetails,
+    resetJobDetails
 }
