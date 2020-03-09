@@ -38,6 +38,7 @@
     "babel-loader": "^8.0.6",
     "clean-jsdoc-theme": "^2.2.11",
     "concurrently": "^5.1.0",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
