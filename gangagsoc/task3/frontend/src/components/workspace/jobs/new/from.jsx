@@ -8,6 +8,10 @@ import { MsgSm } from '../../../common'
 import { connect } from 'react-redux'
 import { getJobDetails, resetJobDetails } from '../../../../redux/actions/jobs'
 
+// To clean up if component unmount in the middle of fetch.
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
+
 class From extends React.Component{
     constructor(props){
         super(props)
@@ -35,7 +39,7 @@ class From extends React.Component{
 
         axios.post(submitNewJob, {
             name: jobName
-        })
+        }, { cancelToken: source.token })
         .then( data => {
             this.setState({disable: false})
             
@@ -67,10 +71,20 @@ class From extends React.Component{
                 
         })
         .catch( err => {
-            console.log(err)
+            if( axios.isCancel(err)){
+                console.log('Request cancel: Potential cause is changing the route')
+            }
+            else {
+                console.log(err)
+            }
+
             this.setState({disable: false})
         })
 
+    }
+
+    componentWillUnmount(){
+        source.cancel()
     }
 
     render(){
