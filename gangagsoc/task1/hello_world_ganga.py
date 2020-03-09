@@ -12,8 +12,8 @@ def hello_world_ganga():
 
     return j
 
-
-if __name__ == '__main__':
+# Print output
+def run_hello_world_ganga_with_output():
     j = hello_world_ganga()
     status = run_until_state(j, state = 'completed', break_states=['new', 'killed', 'failed', 'unknown', 'removed'])
 
@@ -27,3 +27,7 @@ if __name__ == '__main__':
 
     else:
         print(j.status)
+
+
+if __name__ == '__main__':
+    run_hello_world_ganga_with_output()
