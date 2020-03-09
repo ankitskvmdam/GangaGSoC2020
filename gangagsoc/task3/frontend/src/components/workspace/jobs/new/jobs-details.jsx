@@ -55,7 +55,7 @@ class JobsDetails extends React.Component{
     componentDidMount(){
       const { initialise } = this.state
       const { socket, jobs } = this.props
-      
+
       if( !initialise && socket.status == SOCKET_CONNECTED ){
         this.initSocket(socket)
       }
@@ -64,6 +64,16 @@ class JobsDetails extends React.Component{
         this.emitGetJobDetails(socket, jobs.get_details_of)
       }
 
+    }
+
+    componentWillUnmount(){
+      const { socket } = this.props
+      const { initialise } = this.state
+
+      if( initialise ) {
+        socket.io.off()
+        this.setState({initialise: false})
+      }
     }
 
     render(){
