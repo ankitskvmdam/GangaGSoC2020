@@ -9,7 +9,7 @@ def count_the(path_of_pdf):
     count = 0
 
     for word in words:
-        if re.search('^[tT][hH][eE]$', word):
+        if re.search('(?<![a-z])the(?![a-z])', word, re.IGNORECASE):
             count = count + 1
 
     print(count)
