@@ -20,7 +20,6 @@ setup(
     install_requires=[
         'pytest',
         'ganga',
-        'plumbum',
         'PyPDF2',
         'pdfminer.six',
         'flask',
