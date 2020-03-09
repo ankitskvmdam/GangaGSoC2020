@@ -26,11 +26,11 @@ class TestTask1(unittest.TestCase):
             # check total number of arguments. It should be equal to 12.
             self.assertEqual(len(j.splitter.args), 12)
 
-            # check 'the' count. It should be equal to 341
+            # check 'the' count. It should be equal to 350
             import os
             f = open(os.path.join(j.outputdir, "stdout"), "r")
             count = int(f.read())
-            self.assertEqual(count, 341)
+            self.assertEqual(count, 350)
 
 if __name__ == '__main__':
     unittest.main()
