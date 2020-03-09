@@ -15,6 +15,7 @@ class JobsDetails extends React.Component{
           initialise: false,
         }
         this.initSocket = this.initSocket.bind(this)
+        this.emitGetJobDetails = this.emitGetJobDetails.bind(this)
     }
     
     initSocket(socket){
@@ -33,20 +34,40 @@ class JobsDetails extends React.Component{
       this.setState({initialise: true})
     }
 
-    render(){
-      const { received, details,initialise } = this.state
-      const { jobs, socket } = this.props
+    emitGetJobDetails(socket, get_details_of){
+      socket.io.emit(socketGetJobDetials, get_details_of)
+    }
 
-      if(socket.status == SOCKET_CONNECTED) {
-
-        if(!initialise){
-          this.initSocket(socket)
-        }
-
-        if( jobs != undefined && jobs.get_details_of != null && !received){
-          socket.io.emit(socketGetJobDetials, jobs.get_details_of)
-        }
+    componentDidUpdate(prevProps){
+      const { initialise } = this.state
+      const { socket, jobs } = this.props
+      
+      if( !initialise && socket.status == SOCKET_CONNECTED ){
+        this.initSocket(socket)
       }
+
+      if( prevProps != this.props  &&  socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
+        this.emitGetJobDetails(socket, jobs.get_details_of)
+      }
+
+    }
+
+    componentDidMount(){
+      const { initialise } = this.state
+      const { socket, jobs } = this.props
+      
+      if( !initialise && socket.status == SOCKET_CONNECTED ){
+        this.initSocket(socket)
+      }
+
+      if( socket.status == SOCKET_CONNECTED && jobs.get_details_of != null ){
+        this.emitGetJobDetails(socket, jobs.get_details_of)
+      }
+
+    }
+
+    render(){
+      const { received, details } = this.state
 
       if(received){
         return <Code code={details} heading='Job Details'/>
