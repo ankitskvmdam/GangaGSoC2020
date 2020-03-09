@@ -1,18 +1,21 @@
-# Frontend Repo of Ganga
+# Frontend
+Ganga GUI frontend
 
+## About
 Frontend is build using ReactJS(UI), React Router(managing navigation), Redux(managing state), Scss(Stylesheet), Webpack(module bunlder), Node (javascript runtime).
 
-> Node and npm must be installed in you system.
+### Requirements
+* node and npm. Installation instructions are available here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
 ### To build
-To build frontend, from current location run 
+To build frontend run
 
 ```bash
 npm run build
 ```
 
 ### Developement
-To run in developement mode, from current location run
+To run in developement mode run
 
 ```bash
 npm run dev
