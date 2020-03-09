@@ -2,26 +2,35 @@ from distutils.core import setup
 setup(
     name='gangagsoc',
     packages=['gangagsoc'],
+    package_dir={
+        'gangagsoc': 'gangagsoc',
+    },
     version='1.0',
     license='gpl-3.0',
     description='The Challenge for GSoC 2020 student to particpate in the Ganga project',
     author='Ulrik Egede',
     author_email='ulrik.egede@monash.edu',
+    entry_points='''
+        [console_scripts]
+        gangagsoc=bin.gangagsoc:cli
+    ''' ,
     url='https://github.com/ganga-devs/GangaGSoC2020',
     keywords=['GSoC', 'Ganga', 'Challenge'],
+    scipts=['bin/gangagsoc'],
     install_requires=[
-          'pytest',
-          'ganga',
-          'PyPDF2',
-          'pdfminer.six',
-          'flask',
-          'flask-socketio',
-          'python-dotenv',
-          'flask-cors',
-          'gunicorn',
-          'eventlet',
-
-      ],
+        'pytest',
+        'ganga',
+        'plumbum',
+        'PyPDF2',
+        'pdfminer.six',
+        'flask',
+        'flask-socketio',
+        'python-dotenv',
+        'flask-cors',
+        'gunicorn',
+        'eventlet',
+        'Click',
+    ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
