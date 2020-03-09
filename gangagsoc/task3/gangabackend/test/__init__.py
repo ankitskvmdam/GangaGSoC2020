@@ -1,5 +1,5 @@
 import pytest
-import backend
+from .. import backend
 import os
 
 @pytest.fixture(scope="session")

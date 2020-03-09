@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
+from ..config import default
 
 import os
 
@@ -10,8 +11,8 @@ def create_app():
     CORS(app, supports_credentials=True)
 
     # Loads default config defined in config dir
-    app.config.from_object("config.default")
-
+    app.config.from_object(default)
+    
     # set env vars from .env file located at the root of the project
     load_dotenv()
 
