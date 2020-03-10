@@ -37,7 +37,7 @@ def run_task():
     backend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "gangabackend")
  
     build_frontend()
-    print('Starting server, Please wait..')
+    print('Starting Frontend and backend server, Please wait..')
     os.chdir(frontend_dist_path)
     proc1 = subprocess.Popen(["python", "server.py"],
                             stderr=subprocess.STDOUT)
