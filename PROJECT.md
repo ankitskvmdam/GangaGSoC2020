@@ -12,18 +12,16 @@ Following extra python dependencies is used for task1:
 ### Part 1
 Source code for this part is in `gangagsoc/task1/hello_world_ganga.py`.
 Also there is code for monitoring which is used by both part, `gangagsoc/task1/monitoring.py`.
-Test code is in `test/TestTask1Part1.py`.
 
 To run part 1
 
 ```bash
-python gangagsoc/task1/hello_world_ganga.py
+gangagsoc test1-1
 ```
-
-To run test for part 1:
+or
 
 ```bash
-python -m unittest discover test "TestTask1Part1.py"
+python gangagsoc/task1/hello_world_ganga.py
 ```
 
 ### Part 2
@@ -35,19 +33,18 @@ For this part there are three modules:
 To run
 
 ```bash
-python gangagsoc/task1/ganga_split_job.py
+gangagsoc task1-2
 ```
-
-To run test for part 2:
+or
 
 ```bash
-python -m unittest discover test "TestTask1Part2.py"
+python gangagsoc/task1/ganga_split_job.py
 ```
 
 **To run test for task1:**
 
 ```bash
-python -m unittest discover test "TestTask1Part*.py"
+gangagsoc test --task1
 ```
 
 ## Task3: Ganga GUI task
@@ -71,3 +68,11 @@ Following extra python dependencies is used for task3:
 * eventlet
 
 More details is available at [gangagsoc/task3/gangabackend/README.md](https://github.com/ankitskvmdam/GangaGSoC2020/blob/master/gangagsoc/task3/gangabackend/README.md)
+
+### Run
+To run
+
+```bash
+gangagsoc task3
+```
+Once build process is complete server will automatically starts. Visit http://localhost:8080 
