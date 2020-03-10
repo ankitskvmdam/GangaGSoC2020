@@ -8,13 +8,13 @@ setup(
     version='1.0',
     license='gpl-3.0',
     description='The Challenge for GSoC 2020 student to particpate in the Ganga project',
-    author='Ulrik Egede',
-    author_email='ulrik.egede@monash.edu',
+    author='Ankit Kumar',
+    author_email='ankits.kvmdam@hotmail.com',
     entry_points='''
         [console_scripts]
         gangagsoc=bin.gangagsoc:cli
     ''' ,
-    url='https://github.com/ganga-devs/GangaGSoC2020',
+    url='https://github.com/ankitskvmdam/GangaGSoC2020',
     keywords=['GSoC', 'Ganga', 'Challenge'],
     scipts=['bin/gangagsoc'],
     install_requires=[
