@@ -16,7 +16,7 @@ git clone https://github.com/ankitskvmdam/GangaGSoC2020.git
 
 ```bash
 python -m venv venv     # create python environment
-. /venv/bin/activate    # activate python enviroment
+. ./venv/bin/activate    # activate python enviroment
 ```
 
 ### Pip install gangagsoc
