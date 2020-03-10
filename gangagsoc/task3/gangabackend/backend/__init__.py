@@ -2,8 +2,25 @@ from flask import Flask
 from flask_cors import CORS
 from dotenv import load_dotenv
 from ..config import default
+from logging.config import dictConfig
 
 import os
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': 'Ganga Backend Server: [%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
