@@ -67,6 +67,10 @@ const config = {
             {
                 from: './server.py',
                 to: './'
+            },
+            {
+                from: './assets',
+                to: './assets'
             }
         ]),
         new ExtractCssChunksPlugin({
