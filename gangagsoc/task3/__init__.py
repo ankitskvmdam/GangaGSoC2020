@@ -41,7 +41,6 @@ def run_task():
                             
     t3 = threading.Thread(target=output_reader, args=(proc3,))
     t3.start()
-    t3.join()
 
     os.chdir(backend_path)
     proc4 = subprocess.Popen(["python", "run.py"],
@@ -50,6 +49,8 @@ def run_task():
 
     t4 = threading.Thread(target=output_reader, args=(proc4,))
     t4.start()
+    
+    t3.join()
     t4.join()
 
 
