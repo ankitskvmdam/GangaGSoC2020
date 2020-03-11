@@ -69,10 +69,12 @@ def run_test():
 
     os.chdir(frontend_path)
     print('\nGanga GUI tests are running...')
+
+    print('First we have to build front_end (if you run this for the first time then it will took time, it depends on your internet speed)')
+    build_frontend()
     os.system('npm run test:unit')
     
-    print('\n\n\nTo run integration test we need to build the frontend and run servers..\n\n\n')
-    build_frontend()
+    print('\n\n\nTo run integration test we need to run servers..\n\n\n')
     
     print('Starting Frontend and backend server, Please wait..')
 
