@@ -24,7 +24,7 @@ def echo(message):
 def create_job(job_id):
     j = jobs(job_id)
 
-    from gangagsoc.task3.gangabackend.backend.gangatools.monitoring import monitor
+    from ..gangatools.monitoring import monitor
     monitor(j)
     output = ''
 

@@ -14,7 +14,7 @@ def get_job():
 
 @job_bp.route('/new/submit', methods=["POST"])
 def submit_job():
-    from gangagsoc.task3.gangabackend.backend.gangatools.jobs import create_job
+    from ..gangatools.jobs import create_job
     status, job_id = create_job(request.json)
 
     if status == 'submitted':
