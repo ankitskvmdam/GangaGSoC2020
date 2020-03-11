@@ -8,7 +8,7 @@ import { MsgSm } from '../../../common'
 import { connect } from 'react-redux'
 import { getJobDetails, resetJobDetails } from '../../../../redux/actions/jobs'
 
-class From extends React.Component{
+class Form extends React.Component{
     constructor(props){
         super(props)
 
@@ -86,7 +86,8 @@ class From extends React.Component{
     }
 
     componentWillUnmount(){
-        this._source.cancel()
+        if(this._source != '')
+            this._source.cancel()
         clearInterval(this._jobStatus)
     }
 
@@ -121,4 +122,4 @@ const mapActionToState = (dispatch) => ({
     resetJobDetails: () => dispatch(resetJobDetails())
 })
 
-export default connect(null, mapActionToState)(From)
+export default connect(null, mapActionToState)(Form)
