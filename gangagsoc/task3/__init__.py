@@ -70,7 +70,7 @@ def run_test():
     os.chdir(frontend_path)
     print('\nGanga GUI tests are running...')
 
-    print('First we have to build front_end (if you run this for the first time then it will took time, it depends on your internet speed)')
+    print('First we have to build front_end (if you run this for the first time then it will take time, it depends on your internet speed)')
     build_frontend()
     os.system('npm run test:unit')
     
