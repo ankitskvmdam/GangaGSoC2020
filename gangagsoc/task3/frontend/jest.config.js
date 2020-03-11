@@ -21,7 +21,7 @@ module.exports = {
     testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
   
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    testPathIgnorePatterns: ['\\\\node_modules\\\\'],
+    testPathIgnorePatterns: ['\\\\node_modules\\\\', '<rootDir>/cypress/'],
   
     // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
     testURL: 'http://localhost',
