@@ -58,7 +58,7 @@ def run_task():
 
 
 # run test
-def run_test():
+def run_test(headless=""):
     import pytest
     import subprocess
     import threading
@@ -78,7 +78,7 @@ def run_test():
     
     print('Starting Frontend and backend server, Please wait..')
 
-    proc1 = subprocess.Popen(["npm", "run", "test:integration"],
+    proc1 = subprocess.Popen(["npm", "run", "test:integration{}".format(headless)],
                             stderr=subprocess.STDOUT)
                             
     t1 = threading.Thread(target=proc1.communicate, args=(proc1,))

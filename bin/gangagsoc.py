@@ -22,12 +22,16 @@ def task3():
 @cli.command(help='Run test, if no flag given then both task test will run')
 @click.option('--task1', is_flag=True, default=False, help='Run tests for task 1: Ganga initial task')
 @click.option('--task3', is_flag=True, default=False, help='Run tests for task 3: Ganga GUI task')
-def test(task1, task3):
+@click.option('--headless', is_flag=True, default=False, help='Run tests for task 3: Ganga GUI task, headless (Hide the browser)')
+def test(task1, task3, headless):
     if task1:
         run_test1()
 
     elif task3:
-        run_test3()
+        if headless:
+            run_test3(':headless')
+        else:
+            run_test3()
 
     else:
         run_test1()
