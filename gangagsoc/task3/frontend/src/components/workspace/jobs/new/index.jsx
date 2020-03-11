@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Form from './from'
+import Form from './form'
 import JobsDetails from './jobs-details'
 import { ContainerHeading, MsgSm } from '../../../common'
 
