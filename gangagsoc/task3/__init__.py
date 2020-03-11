@@ -71,19 +71,31 @@ def run_test():
     print('\nGanga GUI tests are running...')
     os.system('npm run test:unit')
     
-    print('\n\n\nTo run integration test we have to start servers..\n\n\n')
+    print('\n\n\nTo run integration test we need to build the frontend and run servers..\n\n\n')
+    build_frontend()
+    
+    print('Starting Frontend and backend server, Please wait..')
+
     proc1 = subprocess.Popen(["npm", "run", "test:integration"],
                             stderr=subprocess.STDOUT)
                             
     t1 = threading.Thread(target=proc1.communicate, args=(proc1,))
     t1.start()
 
-    os.chdir(backend_path)
-    proc2 = subprocess.Popen(["python", "run.py"],
+    os.chdir(frontend_dist_path)
+    proc2 = subprocess.Popen(["python", "server.py"],
                             stderr=subprocess.STDOUT)
-
+                            
     t2 = threading.Thread(target=proc2.communicate, args=(proc2,))
     t2.start()
+
+    os.chdir(backend_path)
+    proc3 = subprocess.Popen(["python", "run.py"],
+                            stderr=subprocess.STDOUT)
+
+    t3 = threading.Thread(target=proc3.communicate, args=(proc3,))
+    t3.start()
     
     t1.join()
     t2.join()
+    t3.join()
