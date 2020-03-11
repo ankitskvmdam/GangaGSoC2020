@@ -39,6 +39,9 @@ To run integration test, we need to first start Ganga Backend Server. After you 
 
 ```bash
 npm run server & npm run test:integration 
+
+# for headless
+npm run server & npm run test:integration:headless
 ```
 
 
