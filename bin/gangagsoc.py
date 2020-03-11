@@ -20,8 +20,8 @@ def task3():
         run_task3()
 
 @cli.command(help='Run test, if no flag given then both task test will run')
-@click.option('--task1', is_flag=True, default=False, help='Run tests for task 1')
-@click.option('--task3', is_flag=True, default=False, help='Run tests for task 3')
+@click.option('--task1', is_flag=True, default=False, help='Run tests for task 1: Ganga initial task')
+@click.option('--task3', is_flag=True, default=False, help='Run tests for task 3: Ganga GUI task')
 def test(task1, task3):
     if task1:
         run_test1()
