@@ -57,6 +57,10 @@ gangagsoc test --task3  # test for task3
 
 # for headless test (without browser) (task3)
 gangagsoc test --task3 --headless
+
+# Start task 3: Ganga GUI task inside docker containers.
+# Docker must me installed and running in your system.
+gangagsoc task3 --docker
 ```
 
 ## Task 1: Ganga initial task
