@@ -25,5 +25,5 @@ def socket_client():
     os.environ.putenv("FLASK_CONFIG_MODE", "testing")
     app, socket = backend.create_app()
     app.app_context().push()
-    socket_client = sokcet.test_client(app)
+    socket_client = socket.test_client(app)
     yield socket_client
