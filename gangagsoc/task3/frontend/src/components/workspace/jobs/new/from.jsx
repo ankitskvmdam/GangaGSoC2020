@@ -8,10 +8,6 @@ import { MsgSm } from '../../../common'
 import { connect } from 'react-redux'
 import { getJobDetails, resetJobDetails } from '../../../../redux/actions/jobs'
 
-// To clean up if component unmount in the middle of fetch.
-const CancelToken = axios.CancelToken
-const source = CancelToken.source()
-
 class From extends React.Component{
     constructor(props){
         super(props)
@@ -28,7 +24,9 @@ class From extends React.Component{
 
     submitJob(e){
         e.preventDefault()
-        
+
+        this._source = axios.CancelToken.source()
+
         const { resetJobDetails, getJobDetails } = this.props
         resetJobDetails()
 
@@ -39,7 +37,7 @@ class From extends React.Component{
 
         axios.post(submitNewJob, {
             name: jobName
-        }, { cancelToken: source.token })
+        }, { cancelToken: this._source.token })
         .then( data => {
             this.setState({disable: false})
             
@@ -53,7 +51,7 @@ class From extends React.Component{
                 getJobDetails(data.data.job_id)
 
                 // remove message after 3 sec.
-                setTimeout(()=>{
+                this._jobStatus = setTimeout(()=>{
                     this.setState({
                         jobStatusDisplay: false
                     })
@@ -76,15 +74,20 @@ class From extends React.Component{
             }
             else {
                 console.log(err)
+                this.setState({disable: false})
             }
 
-            this.setState({disable: false})
         })
 
     }
 
+    componentDidMount(){
+        this._source = ''
+    }
+
     componentWillUnmount(){
-        source.cancel()
+        this._source.cancel()
+        clearInterval(this._jobStatus)
     }
 
     render(){
