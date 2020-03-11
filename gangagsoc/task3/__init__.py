@@ -2,6 +2,7 @@ from . import frontend
 from . import gangabackend
 import os
 
+curr_path = os.path.dirname(os.path.realpath(__file__))
 frontend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "frontend")
 frontend_dist_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "frontend", "dist")
 backend_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "gangabackend")
@@ -55,6 +56,19 @@ def run_task():
     
     t1.join()
     t2.join()
+
+def run_task_docker():
+    import subprocess
+    import threading
+
+    os.chdir(curr_path)
+    proc1 = subprocess.Popen(["docker-compose", "up", "--build", "--force-recreate"],
+                            stderr=subprocess.STDOUT)
+    
+    t1 = threading.Thread(target=proc1.communicate, args=(proc1,))
+    t1.start()
+    t1.join()
+
 
 
 # run test

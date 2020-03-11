@@ -1,6 +1,6 @@
 import click
 from gangagsoc.task1 import run_task_part_1, run_task_part_2, run_test as run_test1
-from gangagsoc.task3 import run_task as run_task3, run_test as run_test3
+from gangagsoc.task3 import run_task as run_task3, run_test as run_test3, run_task_docker as run_task3_docker
 
 @click.group()
 def cli():
@@ -16,7 +16,11 @@ def task1_2():
 
 
 @cli.command(help='Run task 3: Ganga GUI task')
-def task3():
+@click.option('--docker', is_flag=True, default=False, help='Run task inside docker containers')
+def task3(docker):
+    if docker:
+        run_task3_docker()  
+    else:
         run_task3()
 
 @cli.command(help='Run test, if no flag given then both task test will run')

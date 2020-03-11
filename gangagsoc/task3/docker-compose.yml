@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - ${frontend_HOST_PORT:-8080}:${frontend_PORT:-80}
+  backend:
+    container_name: backend
+    build:
+      context: ./gangabackend
+      dockerfile: ./Dockerfile
+    environment:
+      - FLASK_HOST=${FLASK_HOST:-0.0.0.0}
+    ports:
+      - ${backend_HOST_PORT:-9991}:${backend_PORT:-9991}
