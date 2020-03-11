@@ -30,21 +30,30 @@ pip install -e .
 ### Use gangagsoc cli to run tasks and tests
 
 ```bash
-#run task 1_1
+
+# for help
+gangagsoc --help
+gangagsoc test --help
+gangagsoc task3 --help
+
+#run task 1-1
 gangagsoc task1-1
 
-#run task 1_2
+#run task 1-2
 gangagsoc task1-2
 
 #run task 3
+# Once debugger output of the flask developer server is visible in the terminal
+# visit http://localhost:8080 
 gangagsoc task3
 
-# Once debugger output of the flask developer server is visible in the terminal, visit http://localhost:8080 
 
 #run test
 gangagsoc test --task1  # test for task1
 
-gangagsoc test --task2  # test for task2
+gangagsoc test --task3  # test for task3
+# Once backend and frontend unit test complete, Cypress window pop up.
+# Choose run all spec to run all the tests. Once every test is completed the you can close the window.
 ```
 
 ## Task 1: Ganga initial task

@@ -27,3 +27,18 @@ To run in developement mode run
 ```bash
 npm run dev
 ```
+
+### To run test
+
+To run unit test
+```bash
+npm run test:unit
+```
+
+To run integration test, we need to first start Ganga Backend Server. After you start Ganga Backend Server
+
+```bash
+npm run server & npm run dev 
+```
+
+
