@@ -53,7 +53,7 @@ gangagsoc test --task1  # test for task1
 
 gangagsoc test --task3  # test for task3
 # Once backend and frontend unit test complete, Cypress window pop up.
-# Choose run all spec to run all the tests. Once every test is completed the you can close the window.
+# Choose run all spec to run all the tests. Once every test is completed then you can close the window.
 ```
 
 ## Task 1: Ganga initial task
