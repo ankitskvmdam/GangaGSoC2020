@@ -10,7 +10,7 @@
     "dev": "concurrently --prefix '{time}-{pid}' 'npm run watch' 'npm run server' ",
     "test:unit": "jest",
     "test:integration": "npx wait-on http://localhost:9991/api/v1/status && npx cypress open",
-    "test": "npm run test:unit && npm run test:integration"
+    "test:integration:headless": "npx wait-on http://localhost:9991/api/v1/status && npx cypress run --headless"
   },
   "keywords": [],
   "author": "Ankit Kumar",
