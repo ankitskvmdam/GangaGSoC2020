@@ -46,10 +46,17 @@ const config = {
             {
                 test: /\.(woff|ttf|otf|eot)$/,
                 exclude: /node_modules/,
-                loader: 'file-loader',
-                options:{
-                    name: '[path][name].[ext]'
-                }
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]'
+                        }
+                    },
+                    {
+                        loader: 'resolve-url-loader'
+                    }
+                ]
             },
             {
                 test:/\.css$/, 
