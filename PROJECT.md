@@ -6,6 +6,8 @@
 - python3
 - node (v12.13.1)
 - npm (v6.12.1)
+- docker (Optional)
+- docker-compose (Optional)
 
 ### Clone this repo
 ```bash
