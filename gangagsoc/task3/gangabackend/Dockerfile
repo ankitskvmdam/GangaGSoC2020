@@ -1,7 +1,7 @@
 FROM python:3.6-alpine AS python-build-env
 LABEL maintainer="Ankit Kumar"
 RUN apk update && apk add ca-certificates && apk add libpq postgresql-dev && apk add libffi-dev \
-    && apk add build-base && rm -rf /var/cache/apk/*
+    && apk add build-base && rm -rf /var/cache/apk/* && apk add python2
 WORKDIR /app
 ADD ./requirements.txt /app
 RUN cd /app && pip install -r requirements.txt
