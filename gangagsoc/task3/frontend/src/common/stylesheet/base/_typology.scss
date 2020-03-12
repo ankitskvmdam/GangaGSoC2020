@@ -1,7 +1,7 @@
-@include font-face('muli-bold', '/assets/fonts/Muli/Muli-Bold.ttf', 'truetype');
-@include font-face('muli-regular', '/assets/fonts/Muli/Muli-Regular.ttf', 'truetype');
-@include font-face('muli-light', '/assets/fonts/Muli/Muli-ExtraLight.ttf', 'truetype');
+@include font-face('muli-bold', '/assets/fonts/Muli/muli-black.woff', 'woff');
+@include font-face('muli-regular', '/assets/fonts/Muli/muli-regular.woff', 'woff');
+@include font-face('muli-light', '/assets/fonts/Muli/muli-extralight.woff', 'woff');
 
-@include font-face('ibm-bold', '/assets/fonts/IBM/IBM-Bold.ttf', 'truetype');
-@include font-face('ibm-regular', '/assets/fonts/IBM/IBM-Regular.ttf', 'truetype');
-@include font-face('ibm-light', '/assets/fonts/IBM/IBM-Light.ttf', 'truetype');
+@include font-face('ibm-bold', '/assets/fonts/IBM/ibm-semibold.woff', 'woff');
+@include font-face('ibm-regular', '/assets/fonts/IBM/ibm-regular.woff', 'woff');
+@include font-face('ibm-light', '/assets/fonts/IBM/ibm-light.woff', 'woff');
