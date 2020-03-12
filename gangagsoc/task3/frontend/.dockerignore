@@ -4,8 +4,12 @@
 # Frontend
 node_modules/**
 dist/**
+server.py
 
 # tests
 cypress/**
 __tests__/**
 __mocks__/**
+jest.config.js
+enzyme.config.js
+cypress.json
