@@ -1,0 +1,11 @@
+# macos files
+.DS_Store
+
+# Frontend
+node_modules/**
+dist/**
+
+# tests
+cypress/**
+__tests__/**
+__mocks__/**
