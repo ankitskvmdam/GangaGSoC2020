@@ -90,3 +90,8 @@ Instructions on manually building frontend is available at [gangagsoc/task3/fron
 Backend is built using flask web framework and websockets are handled by flask-soketio
 
 Instructions on manually running is available at [gangagsoc/task3/gangabackend/README.md](https://github.com/ankitskvmdam/GangaGSoC2020/blob/master/gangagsoc/task3/gangabackend/README.md)
+
+
+### Docker
+To run Ganga GUI inside docker container, docker and docker-compose must be installed.
+> Note: If you are running Ganga GUI inside docker for the first time then it may take time to build images, especially in building the image for frontend.
